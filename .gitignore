@@ -1,12 +1,12 @@
-lib
-dist
-yarn.lock
-package-lock.json
+/lib
+/dist
+/package-lock.json
+
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
-logs
+/logs
 *.log
 npm-debug.log*
 

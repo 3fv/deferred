@@ -1,15 +1,11 @@
 {
-  "name": "@3fv/guard",
-  "version": "1.0.16",
-  "description": "TypeScript guard suite",
+  "name": "@3fv/deferred",
+  "version": "1.0.0",
+  "description": "A reusable deferred",
   "main": "index.js",
   "types": "index.d.ts",
-  "resolutions": {
-    "lodash": "^4.17.15",
-    "lodash.template": "^4.5.0"
-  },
   "scripts": {
-    "build": "mkdir -p lib && cp package.json lib && tsc -b tsconfig.json",
+    "build": "if [ ! -e index.d.ts ];then;mkdir -p lib && cp package.json lib && tsc -b tsconfig.json; fi",
     "build:watch": "yarn run build -- --watch",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -32,26 +28,25 @@
   },
   "keywords": [
     "typescript",
-    "guard",
-    "typeguard",
-    "typesafe",
-    "type",
-    "check"
+    "promise",
+    "deferred",
+    "defer"
   ],
   "author": "Jonathan Glanz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/3fv/guard/issues"
+    "url": "https://github.com/3fv/deferred/issues"
   },
-  "homepage": "https://github.com/3fv/guard#readme",
-  "dependencies": {
-    "lodash": "^4.17.15"
+  "homepage": "https://github.com/3fv/deferred#readme",
+  "peerDependencies": {
+    "@3fv/guard": "^1.0.16"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.17",
     "jest": "^24.2.0",
+    "@3fv/guard": "^1.0.16",
     "npm-run-all": "^4.1.5",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"

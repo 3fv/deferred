@@ -1,4 +1,4 @@
-# TypeGuard
+# `@3fv/deferred`
 
-A simple set ofTypeScript Type Guards to make life easier
+A simple implementation of `Deferred`
 
