@@ -1,6 +1,6 @@
 import { isDefined, isPromise } from "@3fv/guard"
 //import * as BBPromise from 'bluebird'
-import assert from "assert"
+
 
 interface DeferredState<T> {
   resolve: (result?:T) => void
@@ -112,7 +112,8 @@ export class Deferred<T> {
   }
   
   getResult():T {
-    assert.ok(this.isSettled(), "Deferred promise is not settled, result is not available")
+    if(!this.isSettled())
+      throw Error("Deferred promise is not settled, result is not available")
     return this.state.result
   }
 }
