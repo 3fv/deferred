@@ -1,6 +1,6 @@
 {
   "name": "@3fv/deferred",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A reusable deferred",
   "main": "index.js",
   "types": "index.d.ts",
@@ -39,17 +39,16 @@
     "url": "https://github.com/3fv/deferred/issues"
   },
   "homepage": "https://github.com/3fv/deferred#readme",
-  
   "peerDependencies": {
     "@3fv/guard": "^1.0.16",
     "assert": "^2.0.0"
   },
   "devDependencies": {
-    "assert": "^2.0.0",
     "@3fv/guard": "^1.0.16",
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.17",
+    "assert": "^2.0.0",
     "jest": "^24.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
