@@ -9,8 +9,8 @@ interface DeferredState<T> {
   isCancelled: boolean
   isRejected: boolean
   isFulfilled: boolean
-  rejection: Error | null
   result:T | null
+  err: Error | null
 }
 
 /**
@@ -31,37 +31,38 @@ export class Deferred<T> {
     return deferred
   }
   
-  private state:DeferredState<T> = {
-    resolve: null,
-    reject: null,
-    isSettled: false,
-    isCancelled: false,
-    isRejected: false,
-    isFulfilled: false,
-    rejection: null,
-    result: null
-  }
+  private readonly state:DeferredState<T>
   
-  readonly promise:Promise<T> = new Promise<T>((resolve, reject) => {
-    Object.assign(this.state, {
-      resolve,
-      reject
-    })
-  })
+  readonly promise:Promise<T>
 
   
   constructor(promise?:Promise<T> | undefined) {
+    this.state = {
+      resolve: null,
+      reject: null,
+      isSettled: false,
+      isCancelled: false,
+      isRejected: false,
+      isFulfilled: false,
+      result: null,
+      err: null
+    }
+    
+    this.promise = new Promise<T>((resolve, reject) => {
+      Object.assign(this.state, {
+        resolve,
+        reject
+      })
+    })
+    
     if (isDefined(promise)) {
       if (promise instanceof Promise || isPromise(promise)) {
         promise
           .then(this.state.resolve)
           .catch(this.state.reject)
+      } else {
+        throw Error(`An existing promise was provided to Deferred constructor, but it wasn't a valid promise`)
       }
-      // else if (isPromise(promise)) {
-      //   promise
-      //     .then(result => this.state.resolve(result))
-      //     .catch(err => this.state.reject(err))
-      // }
     }
   }
   
@@ -109,6 +110,20 @@ export class Deferred<T> {
       
       this.state.reject(err)
     }
+  }
+  
+  get error() {
+    return this.getError()
+  }
+  
+  get value() {
+    return this.getResult()
+  }
+  
+  getError(): Error | undefined {
+    if(!this.isSettled())
+      throw Error("Deferred promise is not settled, result is not available")
+    return this.state.err
   }
   
   getResult():T {

@@ -1,18 +1,15 @@
-// import 'jest'
-// import { isNil,isNumber,isString } from "../index"
-//
-// test(`isNil`,() => {
-// 	expect(isNil(null)).toBeTruthy()
-// 	expect(isNil(undefined)).toBeTruthy()
-// 	expect(isNil(1)).toBeFalsy()
-// })
-//
-// test(`isNumber`,() => {
-// 	expect(isNumber(1)).toBeTruthy()
-// 	expect(isNumber("1")).toBeFalsy()
-// })
-//
-// test(`isString`,() => {
-// 	expect(isString(1)).toBeFalsy()
-// 	expect(isString("1")).toBeTruthy()
-// })
+import 'jest'
+import { Deferred } from "../Deferred"
+
+test(`getError`, async () => {
+	const err = Error("WTF")
+	const deferred = new Deferred<any>()
+	try {
+		deferred.promise.catch(_err => {
+		})
+		deferred.reject(err)
+		await deferred.promise
+	} catch (_ignoredError) {
+	}
+	expect(err).toBe(deferred.error)
+})

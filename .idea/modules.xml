@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/typeguard.iml" filepath="$PROJECT_DIR$/.idea/typeguard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deferred.iml" filepath="$PROJECT_DIR$/deferred.iml" />
     </modules>
   </component>
 </project>
