@@ -1,6 +1,6 @@
 {
   "name": "@3fv/deferred",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A reusable deferred",
   "main": "index.js",
   "types": "index.d.ts",
