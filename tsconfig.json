@@ -16,7 +16,9 @@
 		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,
 		"outDir": "./lib",
-		"baseUrl": "./"
+		"baseUrl": "./",
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true
 	},
 	"compileOnSave": true,
 	"include": ["src"],
