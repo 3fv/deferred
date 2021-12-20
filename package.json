@@ -40,11 +40,11 @@
   },
   "homepage": "https://github.com/3fv/deferred#readme",
   "peerDependencies": {
-    "@3fv/guard": "^1.4.25",
+    "@3fv/guard": "^1.4.31",
     "assert": "^2.0.0"
   },
   "devDependencies": {
-    "@3fv/guard": "^1.4.25",
+    "@3fv/guard": "^1.4.31",
     "@types/jest": "^26.0.24",
     "@types/lodash": "^4.14.172",
     "@types/node": "^16.4.12",

@@ -71,7 +71,7 @@ export class Deferred<T> {
   }
   
   isRejected(): boolean {
-    return this.state.isSettled
+    return this.state.isRejected
   }
   
   isSettled(): boolean {
