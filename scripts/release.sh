@@ -1,22 +1,24 @@
 #!/bin/bash -e
 
-NPM_VERSION=${1}
+NPM_TAG=${1}
 
-if [[ -z "${NPM_VERSION}" ]];then
+if [[ -z "${NPM_TAG}" ]];then
   echo "package version must be provided"
   exit 255
 fi
 
+NPM_VERSION=$(cat package.json | jq .version)
+
 git push --tags
 echo Publishing
 
-cp README.md package.json lib/
-#cd src
-#find ./ -name "*.ts" | xargs -IsrcFile cp srcFile ../lib
+./scripts/prepare.sh
+cp README.md lib/
 
 pushd lib
-yarn publish . --non-interactive --tag ${NPM_VERSION}
-cp package.json ../
+yarn publish . --from-package --non-interactive --tag ${NPM_TAG}
 popd
 git push
-echo "Successfully released version ${NPM_VERSION}!"
+
+
+echo "Successfully released version ${NPM_VERSION} with tag ${NPM_TAG}!"

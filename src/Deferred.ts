@@ -1,7 +1,9 @@
 import { isDefined, isPromise } from "@3fv/guard"
-//import * as BBPromise from 'bluebird'
 
 
+/**
+ * Internal deferred state
+ */
 interface DeferredState<T> {
   resolve: (result?:T) => void
   reject: (err:any) => void
@@ -19,6 +21,7 @@ interface DeferredState<T> {
  */
 export class Deferred<T> {
   
+
   static async delay(millis:number) {
     const deferred = new Deferred<void>()
     setTimeout(() => deferred.resolve(),millis)

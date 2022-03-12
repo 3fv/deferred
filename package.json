@@ -5,16 +5,13 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "//build": "test ! -e index.d.ts && bash -c \"mkdir -p lib && cp package.json lib && tsc -b tsconfig.json\"",
-    "//build:watch": "yarn run build -- --watch",
-    "init": "mkdir -p lib && cat package.json | jq 'del(.scripts)' > lib/package.json",
+    "init": "./scripts/prepare.sh",
     "build": "yarn run init && tsc -b tsconfig.json",
     "build:watch": "yarn run build && cd lib && yarn unlink;yarn link && cd .. && yarn run build --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "postversion": "./scripts/release.sh $npm_package_version",
-    "//release": "yarn build && yarn test && yarn version --patch --non-interactive",
-    "release": "yarn build && yarn version --patch --non-interactive"
+    "postversion": "./scripts/release.sh latest",
+    "release": "yarn build && yarn test && yarn version --patch --non-interactive"
   },
   "publishConfig": {
     "access": "public"
