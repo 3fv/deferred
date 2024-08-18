@@ -1,5 +1,5 @@
 import 'jest'
-import { Deferred } from "../Deferred"
+import { Deferred } from "../Deferred.js"
 
 test(`getError`, async () => {
 	const err = Error("WTF")
