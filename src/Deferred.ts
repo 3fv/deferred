@@ -1,5 +1,11 @@
 import { isDefined, isPromise } from "@3fv/guard"
 
+export enum DeferredStatus {
+  PENDING = "PENDING",
+  FULFILLED = "FULFILLED",
+  REJECTED = "REJECTED",
+  CANCELED = "CANCELED"
+}
 
 /**
  * Internal deferred state
@@ -83,6 +89,10 @@ export class Deferred<T> {
   
   isCancelled(): boolean {
     return this.state.isCancelled
+  }
+  
+  status(): DeferredStatus {
+    return this.isCancelled() ? DeferredStatus.CANCELED : this.isSettled() ? this.isFulfilled() ? DeferredStatus.FULFILLED : DeferredStatus.REJECTED : DeferredStatus.PENDING
   }
   
   cancel(): void {
