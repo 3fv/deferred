@@ -16,7 +16,10 @@
   },
   "files": [
     "lib",
+    "!lib/*/test",
+    "!lib/**/*.tsbuildinfo",
     "src",
+    "!src/test",
     "README.md"
   ],
   "main": "./lib/cjs/index.js",
@@ -56,7 +59,6 @@
     "@types/shelljs": "^0.8.15",
     "assert": "^2.0.0",
     "jest": "^27.0.6",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "shelljs": "^0.8.5",
     "ts-jest": "^27.0.4",
