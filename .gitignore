@@ -92,3 +92,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 .DS_Store
+
+# Local agent tooling state
+.omc*
+.omx*
+.remember
