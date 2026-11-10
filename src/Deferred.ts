@@ -1,4 +1,4 @@
-import { isDefined, isPromise } from "@3fv/guard"
+import { guard, isDefined, isPromise } from "@3fv/guard"
 
 export enum DeferredStatus {
   PENDING = "PENDING",
@@ -39,7 +39,26 @@ export class Deferred<T> {
     deferred.resolve(value)
     return deferred
   }
-  
+
+  /**
+   * A deferred handed to `callback` at once, the way a callback, event,
+   * worker or timer source becomes a promise without `new Promise`:
+   * `Deferred.useCallback<T>(deferred => source(value => deferred.resolve(value))).promise`.
+   * A throw from `callback` (or a rejection, when it is async) rejects the
+   * deferred unless it has settled already.
+   */
+  static useCallback<T>(
+    callback: (deferred: Deferred<T>) => unknown
+  ): Deferred<T> {
+    const deferred = new Deferred<T>()
+
+    void guard(
+      () => callback(deferred),
+      error => deferred.reject(error)
+    )
+    return deferred
+  }
+
   private readonly state:DeferredState<T>
   
   readonly promise:Promise<T>
